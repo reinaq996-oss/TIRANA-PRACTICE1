@@ -1,0 +1,14 @@
+RAPORT PËRMBLEDHËS - TIRANA DEAL FINDER
+=============================================
+Numri total i shpalljeve: 40
+Çmimi mesatar: 162,808.67 EUR
+Sipërfaqja mesatare: 99.60 m²
+
+OFERTA MË E MIRË (price_per_sqm më e ulët):
+  Çmimi: 59,913 EUR
+  Sipërfaqja: 63 m²
+  Dhoma gjumi: 3
+  Banjo: 1
+  Kati: 3
+  Zona: Don Bosko
+  Çmimi/m²: 951.00 EUR
