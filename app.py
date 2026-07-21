@@ -1,9 +1,13 @@
+import joblib
 import pandas as pd
 from flask import Flask, render_template, abort
 
 app = Flask(__name__)
 
 DATA_PATH = "data/apartments.csv"
+MODEL_PATH = "models/price_model.joblib"
+
+model = joblib.load(MODEL_PATH)
 
 
 @app.route("/")
@@ -23,6 +27,18 @@ def listing_detail(listing_id):
 
     listing = df.iloc[listing_id].to_dict()
     listing["id"] = listing_id
+
+    features = pd.DataFrame([{
+        "sqm": listing["sqm"],
+        "bedrooms": listing["bedrooms"],
+        "bathrooms": listing["bathrooms"],
+        "floor": listing["floor"],
+        "neighborhood": listing["neighborhood"],
+    }])
+
+    predicted_price = model.predict(features)[0]
+    listing["predicted_price"] = round(float(predicted_price), 2)
+
     return render_template("listing.html", city="Tirana", listing=listing)
 
 
