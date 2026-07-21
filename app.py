@@ -26,5 +26,19 @@ def listing_detail(listing_id):
     return render_template("listing.html", city="Tirana", listing=listing)
 
 
+@app.route("/good-deals")
+def good_deals():
+    df = pd.read_csv(DATA_PATH)
+    df = df.reset_index().rename(columns={"index": "id"})
+
+    df["price_per_sqm"] = df["price"] / df["sqm"]
+    avg_price_per_sqm = df["price_per_sqm"].mean()
+
+    good_deals_df = df[df["price_per_sqm"] < avg_price_per_sqm]
+    listings = good_deals_df.to_dict(orient="records")
+
+    return render_template("index.html", city="Tirana", listings=listings)
+
+
 if __name__ == "__main__":
     app.run(debug=True)
