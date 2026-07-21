@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Apartamenti #{{ listing.id }} - {{ city }}</title>
+    <style>
+        body { font-family: sans-serif; margin: 2rem; }
+        .card {
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            padding: 1.5rem;
+            max-width: 400px;
+        }
+        .card h2 { color: #7B5EA7; margin-top: 0; }
+        .card table { width: 100%; border-collapse: collapse; }
+        .card td { padding: 6px 0; }
+        .card td:first-child { font-weight: bold; width: 40%; }
+        a.back-link { display: inline-block; margin-bottom: 1rem; color: #7B5EA7; }
+    </style>
+</head>
+<body>
+    <a class="back-link" href="/">&larr; Kthehu te lista</a>
+
+    <div class="card">
+        <h2>Apartamenti #{{ listing.id }}</h2>
+        <table>
+            <tr><td>Çmimi</td><td>{{ listing.price }} EUR</td></tr>
+            <tr><td>Sipërfaqja</td><td>{{ listing.sqm }} m²</td></tr>
+            <tr><td>Dhoma gjumi</td><td>{{ listing.bedrooms }}</td></tr>
+            <tr><td>Banjo</td><td>{{ listing.bathrooms }}</td></tr>
+            <tr><td>Kati</td><td>{{ listing.floor }}</td></tr>
+            <tr><td>Zona</td><td>{{ listing.neighborhood }}</td></tr>
+        </table>
+    </div>
+</body>
+</html>
