@@ -3,9 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <title>Hello, {{ city }}!</title>
+    <style>
+        body { font-family: sans-serif; margin: 2rem; }
+        table { border-collapse: collapse; width: 100%; }
+        th, td { border: 1px solid #ccc; padding: 8px 12px; text-align: left; }
+        th { background-color: #A084CA; color: white; }
+        tr:nth-child(even) { background-color: #f5f5f5; }
+    </style>
 </head>
 <body>
     <h1>Hello, {{ city }}!</h1>
     <p>Mirë se erdhe në aplikacionin Flask për {{ city }}.</p>
+
+    <h2>Shpalljet e Apartamenteve</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Çmimi (EUR)</th>
+                <th>Sipërfaqja (m²)</th>
+                <th>Dhoma gjumi</th>
+                <th>Banjo</th>
+                <th>Kati</th>
+                <th>Zona</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for listing in listings %}
+            <tr>
+                <td>{{ listing.price }}</td>
+                <td>{{ listing.sqm }}</td>
+                <td>{{ listing.bedrooms }}</td>
+                <td>{{ listing.bathrooms }}</td>
+                <td>{{ listing.floor }}</td>
+                <td>{{ listing.neighborhood }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 </body>
 </html>
