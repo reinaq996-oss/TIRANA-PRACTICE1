@@ -1,10 +1,13 @@
-"""
+""""
 Ngarkon data/apartments.csv, ndan të dhënat në train/test,
 trajnon një model LinearRegression për të parashikuar price
 nga sqm, bedrooms, bathrooms dhe floor,
-dhe printon R² dhe Mean Absolute Error (MAE) mbi test set.
+printon R² dhe Mean Absolute Error (MAE) mbi test set,
+dhe ruan modelin e trajnuar te models/price_model.joblib.
 """
 
+import os
+import joblib
 import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LinearRegression
@@ -13,6 +16,8 @@ from sklearn.metrics import r2_score, mean_absolute_error
 DATA_PATH = "data/apartments.csv"
 FEATURES = ["sqm", "bedrooms", "bathrooms", "floor"]
 TARGET = "price"
+MODEL_DIR = "models"
+MODEL_PATH = os.path.join(MODEL_DIR, "price_model.joblib")
 
 
 def main():
@@ -45,6 +50,11 @@ def main():
     for feature, coef in zip(FEATURES, model.coef_):
         print(f"  {feature}: {coef:,.2f}")
     print(f"  intercept: {model.intercept_:,.2f}")
+
+    # --- Ruajmë modelin e trajnuar ---
+    os.makedirs(MODEL_DIR, exist_ok=True)
+    joblib.dump(model, MODEL_PATH)
+    print(f"\nU ruajt modeli i trajnuar te '{MODEL_PATH}'")
 
 
 if __name__ == "__main__":
